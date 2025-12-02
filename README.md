@@ -91,3 +91,4 @@ Produces `example_workbook.xlsx` with:
 - The prompt and schema are copied from the previous pipeline (see `prompts/`).
 - All network/API calls are gated by `--run`; scraping and exports are offline.
 - If you regenerate annotations, rerun CSV and workbook steps to stay in sync.
+- Budget note: the full annotation run of the 5,632 papers cost roughly $5 with the current settings/model.
