@@ -1,0 +1,104 @@
+{
+  "name": "article_filtering_xml",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": {
+        "type": "string",
+        "description": "Concise summary of the paper's content in English (1-3 sentences; use placeholder text if information is missing)."
+      },
+      "summary_cn": {
+        "type": "string",
+        "description": "Concise summary of the paper's content in Chinese (1-3 sentences; use placeholder text if information is missing; for untranslatable technical terms, use parentheses for English)."
+      },
+      "keywords": {
+        "type": "string",
+        "description": "Comma-separated list of up to 10 relevant English keywords."
+      },
+      "scoring": {
+        "type": "object",
+        "properties": {
+          "interpretability": {
+            "type": "integer",
+            "description": "Score (1-10): high if directly related to white-box model interpretability.",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "understanding": {
+            "type": "integer",
+            "description": "Score (1-10): high if it significantly improves understanding of artificial systems.",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "safety": {
+            "type": "integer",
+            "description": "Score (1-10): high if the paper addresses AI safety.",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "technicality": {
+            "type": "integer",
+            "description": "Score (1-10): high if the work is deeply technical or methodologically rigorous.",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "surprisal": {
+            "type": "integer",
+            "description": "Score (1-10): high if the paper presents surprising, novel, or highly interesting results.",
+            "minimum": 1,
+            "maximum": 10
+          }
+        },
+        "required": [
+          "interpretability",
+          "understanding",
+          "safety",
+          "technicality",
+          "surprisal"
+        ],
+        "additionalProperties": false
+      },
+      "category": {
+        "type": "object",
+        "properties": {
+          "failure_mode_addressed": {
+            "type": "string",
+            "description": "Category: one of {human-misuse, misalignment, societal-disruption, other, non-applicable}.",
+            "enum": [
+              "human-misuse",
+              "misalignment",
+              "societal-disruption",
+              "other",
+              "non-applicable"
+            ]
+          },
+          "primary_focus": {
+            "type": "string",
+            "description": "Category: one of {interpretability, alignment, robustness, control, other}.",
+            "enum": [
+              "interpretability",
+              "alignment",
+              "robustness",
+              "control",
+              "other"
+            ]
+          }
+        },
+        "required": [
+          "failure_mode_addressed",
+          "primary_focus"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "summary",
+      "summary_cn",
+      "keywords",
+      "scoring",
+      "category"
+    ],
+    "additionalProperties": false
+  },
+  "strict": true
+}
